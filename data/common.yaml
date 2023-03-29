@@ -1,2 +1,5 @@
 ---
-message: "This node is using common data"
+puppet_operational_dashboards::profile::dashboards::grafana_password: puppetlabs
+lookup_options:
+  puppet_operational_dashboards::profile::dashboards::grafana_password:
+    convert_to: "Sensitive"
