@@ -29,3 +29,10 @@ node default {
   # Example:
   #   class { 'my_class': }
 }
+
+node pe-nixagent-0.garrett.rowell {
+  package { 'pe-client-tools':
+    ensure => present,
+    install_options => ['--disablerepo=*', '--enablerepo=puppet_enterprise'],
+  }
+}
