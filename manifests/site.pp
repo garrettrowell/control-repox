@@ -33,6 +33,6 @@ node default {
 node 'pe-nixagent-0.garrett.rowell' {
   package { 'pe-client-tools':
     ensure => present,
-    install_options => ['--disablerepo=*', '--enablerepo=puppet_enterprise'],
+    install_options => ['--disablerepo=*', '--enablerepo=puppet'],
   }
 }
