@@ -11,6 +11,9 @@ mod 'puppetlabs-inifile', '5.4.0'
 mod 'puppetlabs-influxdb', '1.6.0'
 mod 'puppetlabs-puppet_metrics_collector', '7.2.0'
 mod 'puppetlabs-pe_status_check', '2.6.0'
+mod 'puppetlabs-puppet_agent', '4.14.0'
+mod 'puppetlabs-facts', '1.4.0'
+
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
