@@ -37,6 +37,6 @@ node 'pe-nixagent-0.garrett.rowell' {
   
   package { 'pe-client-tools':
     ensure => present,
-    install_options => ['--disablerepo=*', '--enablerepo=puppet'],
+    install_options => ['--disablerepo=*', '--enablerepo=pc_repo'],
   }
 }
