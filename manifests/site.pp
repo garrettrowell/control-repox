@@ -28,7 +28,7 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  if $facts['fail_catalog'] {
+  if $facts['fail_catalog'] == 'true' {
     fail('i was told to fail...')
   }
 }
