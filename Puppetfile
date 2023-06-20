@@ -14,6 +14,10 @@ mod 'puppetlabs-pe_status_check', '2.6.0'
 mod 'puppetlabs-puppet_agent', '4.14.0'
 mod 'puppetlabs-facts', '1.4.0'
 
+mod 'opsgenie_report_processor',
+  git: 'git@github.com:garrettrowell/opsgenie_report_processor.git',
+  branch: 'main'
+
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
