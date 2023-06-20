@@ -30,13 +30,13 @@ node default {
   #   class { 'my_class': }
 }
 
-node 'pe-nixagent-0.garrett.rowell' {
-  class { 'puppet_agent':
-    package_version => '6.28.0',
-  }
-  
-  package { 'pe-client-tools':
-    ensure => present,
-    install_options => ['--disablerepo=*', '--enablerepo=pc_repo'],
-  }
-}
+#node 'pe-nixagent-0.garrett.rowell' {
+#  class { 'puppet_agent':
+#    package_version => '6.28.0',
+#  }
+#  
+#  package { 'pe-client-tools':
+#    ensure => present,
+#    install_options => ['--disablerepo=*', '--enablerepo=pc_repo'],
+#  }
+#}
