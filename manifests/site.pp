@@ -37,9 +37,9 @@ node 'pe-primary.garrett.rowell' {
   # Override PE managed rule to allow the primary server to also
   #   upload facts for a node. This should be removed once migration
   #   is complete
-  #  Pe_puppet_authorization::Rule <| title == 'puppetlabs facts' |> {
-  #    allow => [$trusted['certname'], '$1'],
-  #  }
+  Pe_puppet_authorization::Rule <| title == 'puppetlabs facts' |> {
+    allow => [$trusted['certname'], '$1'],
+  }
 
   # temp allow primary to v3 catalog
   Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
