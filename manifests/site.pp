@@ -34,14 +34,21 @@ node default {
 }
 
 node 'pe-primary.garrett.rowell' {
-  puppet_authorization::rule { 'puppetlabs facts':
-    match_request_path   => '^/puppet/v3/facts/([^/]+)$',
-    match_request_type   => 'regex',
-    match_request_method => 'post',
-    allow                => ['pe-primary.garrett.rowell', '$1'],
-    sort_order           => 500,
-    path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
-    notify               => Service['pe-puppetserver'],
+  #  puppet_authorization::rule { 'puppetlabs facts':
+  #    match_request_path   => '^/puppet/v3/facts/([^/]+)$',
+  #    match_request_type   => 'regex',
+  #    match_request_method => 'post',
+  #    allow                => ['pe-primary.garrett.rowell', '$1'],
+  #    sort_order           => 500,
+  #    path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
+  #    notify               => Service['pe-puppetserver'],
+  #  }
+
+  # Override PE managed rule to allow the primary server to also
+  #   upload facts for a node. This should be removed once migration
+  #   is complete
+  Pe_puppet_authorization::Rule <| title == 'puppetlabs facts' |> {
+    allow => [$trusted['certname'], '$1'],
   }
 }
 
