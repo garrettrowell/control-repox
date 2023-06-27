@@ -34,11 +34,11 @@ node default {
 }
 
 node 'pe-primary.garrett.rowell' {
-  puppet_authorization::rule { 'upload facts':
+  puppet_authorization::rule { 'puppetlabs facts':
     match_request_path   => '^/puppet/v3/facts/([^/]+)$',
     match_request_type   => 'regex',
     match_request_method => 'post',
-    allow                => ['pe-primary.garrett.rowell'],
+    allow                => ['pe-primary.garrett.rowell', '$1'],
     sort_order           => 500,
     path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
     notify               => Service['pe-puppetserver'],
