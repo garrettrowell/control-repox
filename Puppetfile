@@ -23,7 +23,7 @@ mod 'puppetlabs-puppet_authorization', '0.5.1'
 #  git: 'https://github.com/voxpupuli/puppet-catalog_diff.git',
 #  tag: 'v2.3.0'
 
-mod 'puppet-catalog_diff', 'v4.0.0'
+mod 'puppet-catalog_diff', '4.0.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
