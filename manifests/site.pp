@@ -41,6 +41,12 @@ node 'pe-primary.garrett.rowell' {
     allow => [$trusted['certname'], '$1'],
   }
 
+  # temp allow primary to v3 catalog
+  Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
+    allow => [$trusted['certname'], '$1'],
+  }
+
+
   puppet_authorization::rule { 'catalog-diff certless catalog':
     match_request_path   => '^/puppet/v4/catalog',
     match_request_type   => 'regex',
