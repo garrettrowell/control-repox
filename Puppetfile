@@ -18,6 +18,7 @@ mod 'opsgenie_report_processor',
   git: 'git@github.com:garrettrowell/opsgenie_report_processor.git',
   branch: 'main'
 
+mod 'puppetlabs-puppet_authorization', '0.5.1'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

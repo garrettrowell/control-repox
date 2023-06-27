@@ -33,6 +33,18 @@ node default {
   }
 }
 
+node 'pe-primary.garrett.rowell' {
+  puppet_authorization::rule { 'upload facts':
+    match_request_path   => '^/puppet/v3/facts/([^/]+)$',
+    match_request_type   => 'regex',
+    match_request_method => 'post',
+    allow                => ['pe-primary.garrett.rowell'],
+    sort_order           => 500,
+    path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
+    notify               => Service['pe-puppetserver'],
+  }
+}
+
 #node 'pe-nixagent-0.garrett.rowell' {
 #  class { 'puppet_agent':
 #    package_version => '6.28.0',
