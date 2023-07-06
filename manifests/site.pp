@@ -57,6 +57,8 @@ node 'pe-primary.garrett.rowell' {
     path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
     notify               => Service['pe-puppetserver'],
   }
+
+  include profile::example
 }
 
 #node 'pe-nixagent-0.garrett.rowell' {
