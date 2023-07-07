@@ -41,7 +41,7 @@ node default {
 
     include "role::${role_clean}"
 
-    $atest = 'a-poor::nested'
+    $atest = 'Single-bad'
     $down_test = downcase($atest)
     $down_split = split($down_test, '::')
     $down_clean = $down_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
