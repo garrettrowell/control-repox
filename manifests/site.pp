@@ -46,12 +46,15 @@ node default {
     # rebuild expected name::space format
     $role_clean = join($role_clean_elms, '::')
 
-    include "role::${role_clean}"
+    # Attempt to include the role
+    $included_exists = safe_include("role::${role_clean}")
 
-    $fail_test = safe_include('role::no::exist')
-    echo { "fail result: ${fail_test}": }
-    $pass_test = safe_include('role::default')
-    echo { "pass result: ${pass_test}": }
+    # if the role doesn't exist safe_include returns undef
+    # in which case alert the user and include 'role::default' instead
+    if $included_exists == undef {
+      echo { "'role::${role_clean}' does not exist. Ensuring 'role::default' gets applied": }
+      include role::default
+    }
   } else {
     include role::default
   }
