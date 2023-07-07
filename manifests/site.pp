@@ -31,7 +31,7 @@ node default {
   }
 
   # if trusted extension of pp_role is set include that role, otherwise ensure default role assigned
-  if $trusted['extensions']['pp_role'] != undef {
+  if $trusted['extensions']['pp_role'] != nil {
     include "role::${trusted['extensions']['pp_role']}"
   } else {
     include role::default
