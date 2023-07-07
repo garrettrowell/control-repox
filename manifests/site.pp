@@ -43,7 +43,7 @@ node default {
 
     $atest = 'a-poor::nested'
     $down_test = downcase($atest)
-    $down_split = split($down_test)
+    $down_split = split($down_test, '::')
     $down_clean = $down_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
     $down_join = join($down_clean, '::')
     echo { "testing -> ${down_join}": }
