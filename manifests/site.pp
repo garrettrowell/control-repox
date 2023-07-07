@@ -32,10 +32,14 @@ node default {
 
   # if trusted extension of pp_role is set include that role, otherwise ensure default role assigned
   if $trusted['extensions']['pp_role'] != undef {
-    $down_role = downcase('Web-server')
+    # Sanatize pp_role to ensure all lowercase characters and only acceptable characters used.
+    #   See: https://www.puppet.com/docs/puppet/7/lang_reserved.html#lang_acceptable_char-classes-and-defined-resource-type-names
+    #   Uacceptable characters replaced with '_'
+    #
+    $down_role = downcase($trusted['extensions']['pp_role'])
     $role_clean = regsubst($down_role, /[^a-z0-9_]/, '_', 'G')
-    echo { $role_clean: }
-    include "role::${trusted['extensions']['pp_role']}"
+
+    include "role::${role_clean}"
   } else {
     include role::default
   }
