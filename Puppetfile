@@ -27,6 +27,7 @@ mod 'puppet-catalog_diff', '4.0.0'
 
 mod 'ipcrm-echo', '0.1.8'
 mod 'puppetlabs-registry', '5.0.1'
+mod 'dylanratcliffe-safe_include', '1.0.3'
 
 #mod 'dsc-csecurityoptions', '3.1.3-0-0'
 mod 'puppetlabs-pwshlib', '0.10.3'

@@ -36,17 +36,20 @@ node default {
     #   See: https://www.puppet.com/docs/puppet/7/lang_reserved.html#lang_acceptable_char-classes-and-defined-resource-type-names
     #   Uacceptable characters replaced with '_'
     #
-    $down_role = downcase($trusted['extensions']['pp_role'])
-    $role_clean = regsubst($down_role, /[^a-z0-9_]/, '_', 'G')
+
+    # downcase the entire thing
+    $role_downcase = downcase($trusted['extensions']['pp_role'])
+    # create array of each namespace
+    $role_split = split($role_downcase, '::')
+    # substitute any invalid characters in each namespace with '_'
+    $role_clean_elms = $role_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
+    # rebuild expected name::space format
+    $role_clean = join($role_clean_elms, '::')
 
     include "role::${role_clean}"
 
-    $atest = 'Single-bad'
-    $down_test = downcase($atest)
-    $down_split = split($down_test, '::')
-    $down_clean = $down_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
-    $down_join = join($down_clean, '::')
-    echo { "testing -> ${down_join}": }
+    $test = safe_include('role::no::exist')
+    echo { "result: ${test}": }
   } else {
     include role::default
   }
