@@ -52,7 +52,11 @@ node default {
     # if the role doesn't exist safe_include returns undef
     # in which case alert the user and include 'role::default' instead
     if $included_exists == undef {
-      echo { "'role::${role_clean}' does not exist. Ensuring 'role::default' gets applied": }
+      echo { "'role::${role_clean}' does not exist. Ensuring 'role::default' gets applied":
+        loglevel => 'warn',
+        withpath => false,
+      }
+
       include role::default
     }
   } else {
