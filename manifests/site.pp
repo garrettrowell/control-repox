@@ -48,8 +48,10 @@ node default {
 
     include "role::${role_clean}"
 
-    $test = safe_include('role::no::exist')
-    echo { "result: ${test}": }
+    $fail_test = safe_include('role::no::exist')
+    echo { "fail result: ${fail_test}": }
+    $pass_test = safe_include('role::default')
+    echo { "pass result: ${pass_test}": }
   } else {
     include role::default
   }
