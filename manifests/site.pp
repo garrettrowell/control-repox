@@ -34,9 +34,7 @@ node default {
   if $trusted['extensions']['pp_role'] != undef {
     # Sanatize pp_role to ensure all lowercase characters and only acceptable characters used.
     #   See: https://www.puppet.com/docs/puppet/7/lang_reserved.html#lang_acceptable_char-classes-and-defined-resource-type-names
-    #   Uacceptable characters replaced with '_'
     #
-
     # downcase the entire thing
     $role_downcase = downcase($trusted['extensions']['pp_role'])
     # create array of each namespace
@@ -45,14 +43,16 @@ node default {
     $role_clean_elms = $role_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
     # rebuild expected name::space format
     $role_clean = join($role_clean_elms, '::')
+    # prefix with the role namespace, because this is the standard i've elected to follow
+    $role_final = "role::${role_clean}"
 
     # Attempt to include the role
-    $included_exists = safe_include("role::${role_clean}")
+    $included_exists = safe_include($role_final)
 
     # if the role doesn't exist safe_include returns undef
     # in which case alert the user and include 'role::default' instead
     if $included_exists == undef {
-      echo { "'role::${role_clean}' does not exist. Ensuring 'role::default' gets applied":
+      echo { "'${role_final}' does not exist. Ensuring 'role::default' gets applied":
         loglevel => 'warning',
         withpath => false,
       }
