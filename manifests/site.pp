@@ -40,6 +40,13 @@ node default {
     $role_clean = regsubst($down_role, /[^a-z0-9_]/, '_', 'G')
 
     include "role::${role_clean}"
+
+    $atest = 'a-poor::nested'
+    $down_test = downcase($atest)
+    $down_split = split($down_test)
+    $down_clean = $down_split.map |$elm| { regsubst($elm, /[^a-z0-9_]/, '_', 'G') }
+    $down_join = join($down_clean, '::')
+    echo { "testing -> ${down_join}": }
   } else {
     include role::default
   }
