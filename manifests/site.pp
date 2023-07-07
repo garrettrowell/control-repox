@@ -53,7 +53,7 @@ node default {
     # in which case alert the user and include 'role::default' instead
     if $included_exists == undef {
       echo { "'role::${role_clean}' does not exist. Ensuring 'role::default' gets applied":
-        loglevel => 'warn',
+        loglevel => 'warning',
         withpath => false,
       }
 
