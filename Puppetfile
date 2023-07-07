@@ -25,6 +25,8 @@ mod 'puppetlabs-puppet_authorization', '0.5.1'
 
 mod 'puppet-catalog_diff', '4.0.0'
 
+mod 'ipcrm-echo', '0.1.8'
+
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',

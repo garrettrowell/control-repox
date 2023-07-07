@@ -25,49 +25,24 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  # This is where you can declare classes for all nodes.
-  # Example:
-  #   class { 'my_class': }
+  # Check for a external 'fail_catalog' fact to manually trigger catalog failure
   if $facts['fail_catalog'] == 'true' {
     fail('i was told to fail...')
+  }
+
+  # if trusted extension of pp_role is set include that role, otherwise ensure default role assigned
+  if $trusted['extensions']['pp_role'] != undef {
+    include "role::${trusted['extensions']['pp_role']}"
+  } else {
+    include role::default
   }
 }
 
 node 'pe-primary.garrett.rowell' {
-  # Override PE managed rule to allow the primary server to also
-  #   upload facts for a node. This should be removed once migration
+  # Override PE managed rule to allow the primary server to request
+  #   catalogs for any node. This should be removed once migration
   #   is complete
-  #  Pe_puppet_authorization::Rule <| title == 'puppetlabs facts' |> {
-  #    allow => [$trusted['certname'], '$1'],
-  #  }
-
-  # temp allow primary to v3 catalog
   Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
     allow => [$trusted['certname'], '$1'],
   }
-
-
-  puppet_authorization::rule { 'catalog-diff certless catalog':
-    ensure               => absent,
-    match_request_path   => '^/puppet/v4/catalog',
-    match_request_type   => 'regex',
-    match_request_method => 'post',
-    allow                => $trusted['certname'],
-    sort_order           => 500,
-    path                 => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
-    notify               => Service['pe-puppetserver'],
-  }
-
-  include profile::example
 }
-
-#node 'pe-nixagent-0.garrett.rowell' {
-#  class { 'puppet_agent':
-#    package_version => '6.28.0',
-#  }
-#  
-#  package { 'pe-client-tools':
-#    ensure => present,
-#    install_options => ['--disablerepo=*', '--enablerepo=pc_repo'],
-#  }
-#}
