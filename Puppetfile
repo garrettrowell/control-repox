@@ -28,6 +28,9 @@ mod 'puppet-catalog_diff', '4.0.0'
 mod 'ipcrm-echo', '0.1.8'
 mod 'puppetlabs-registry', '5.0.1'
 
+mod 'dsc-csecurityoptions', '3.1.3-0-0'
+mod 'puppetlabs-pwshlib', '0.10.3'
+
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
