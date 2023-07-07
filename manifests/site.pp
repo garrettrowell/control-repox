@@ -32,6 +32,9 @@ node default {
 
   # if trusted extension of pp_role is set include that role, otherwise ensure default role assigned
   if $trusted['extensions']['pp_role'] != undef {
+    $down_role = downcase('Web-server')
+    $role_clean = regsubst($down_role, /(?~[a-z0-9_])*/, '_')
+    echo { $role_clean: }
     include "role::${trusted['extensions']['pp_role']}"
   } else {
     include role::default
