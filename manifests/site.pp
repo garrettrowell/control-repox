@@ -78,7 +78,8 @@ node default {
     }
   })
 
-  echo { "test_secret: ${test_secret}": }
+  echo { "test_secret wrapped: ${test_secret}": }
+  echo { "test_secret unwrapped: ${test_secret.unwrap}": }
 
 }
 
