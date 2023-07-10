@@ -4,5 +4,5 @@ test_password: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAA
 
 # Convert the value for any key whom has the word 'password' in it to Sensitive data type
 lookup_options:
-  '\A(.+)?password(.+)?\z':
+  '^.*password$':
     convert_to: "Sensitive"
