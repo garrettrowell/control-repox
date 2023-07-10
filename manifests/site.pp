@@ -68,6 +68,18 @@ node default {
   echo { "wrapped_pass: ${pass}": }
   echo { "unwrapped_pass: ${pass.unwrap}": }
 
+  # Azure key vault
+  $test_secret = azure_key_vault::secret('growell-vault', 'test-secret', {
+    vault_api_version             => '7.4',
+    service_principal_credentials => {
+      tenant_id     => '6917e1c4-8f49-4999-9a74-fcc94e60bc34',
+      client_id     => 'b050f2f3-75b5-4782-8fc2-e61a314a1af9',
+      client_secret => lookup('azure_client_secret'),
+    }
+  })
+
+  echo { "test_secret: ${test_secret}": }
+
 }
 
 node 'pe-primary.garrett.rowell' {
