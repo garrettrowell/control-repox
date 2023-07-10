@@ -77,23 +77,27 @@ node default {
   #    client_secret => lookup('azure_client_secret').unwrap,
   #  }
   #})
-
+  #
   #echo { "test_secret wrapped: ${test_secret}": }
   #echo { "test_secret unwrapped: ${test_secret.unwrap}": }
 
-  $test_cert = azure_key_vault::secret('growell-vault', 'test-cert', {
-    vault_api_version             => '7.4',
-    service_principal_credentials => {
-      tenant_id     => '6917e1c4-8f49-4999-9a74-fcc94e60bc34',
-      client_id     => 'b050f2f3-75b5-4782-8fc2-e61a314a1af9',
-      client_secret => lookup('azure_client_secret').unwrap,
-    }
-  })
-
-  file { '/tmp/test_cert.pem':
-    ensure  => file,
-    content => base64('decode', "${test_cert.unwrap}")
-  }
+  # Azure key vault - Cert
+  #   Can validate contents on *NIX with:
+  #   openssl pkcs12 -in /tmp/test_cert.pkcs12 -info -nokeys
+  #
+  #$test_cert = azure_key_vault::secret('growell-vault', 'test-cert', {
+  #  vault_api_version             => '7.4',
+  #  service_principal_credentials => {
+  #    tenant_id     => '6917e1c4-8f49-4999-9a74-fcc94e60bc34',
+  #    client_id     => 'b050f2f3-75b5-4782-8fc2-e61a314a1af9',
+  #    client_secret => lookup('azure_client_secret').unwrap,
+  #  }
+  #})
+  #
+  #file { '/tmp/test_cert.pkcs12':
+  #  ensure  => file,
+  #  content => base64('decode', "${test_cert.unwrap}")
+  #}
 
 }
 
