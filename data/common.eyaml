@@ -1,0 +1,8 @@
+---
+# Decrypts to: 'testing eyaml encrypted secret'
+test_password: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAJZWxFKTSAiEHxAAoijn5Pc/vhngjRLNvByNYNsMyJYErAWE811a8P7v52w06Yaci6PDgEKABwfK434WdfCbYwU0oYlX4EriX9ypakd3W1FBuiwrk0dOoou6PrZSZB/xJRZDv0gUzB9lsKiV1RNwr9RgVKkM1lWikzD1L1ZM14TB9qA3WEW1MlkBsfvKXvDayni+cJVMMGyELDA4NmeqSYI68iWLDR/uthfDIDm6l51axfNzGYwN9B3gjy4ZaLz/+TZH45Lmvk7/cpG0NcnTmolFDGFQcBaaRJUF1BkpMxWgsREFUzcK++T3hZjgZVl9sXLFyFxMvCXC/GvoqVqWy/TBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBmxBV5EQNiQtINk1E+ztE4gCDLuIxPtJxQjNpteKQ6lgTl98KP0tQCusqSUdoCz1v6Og==]
+
+# Convert the value for any key whom has the word 'password' in it to Sensitive data type
+lookup_options:
+  '\A(.+)?password(.+)?\z':
+    convert_to: "Sensitive"

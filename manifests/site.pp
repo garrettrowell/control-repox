@@ -62,6 +62,12 @@ node default {
   } else {
     include role::default
   }
+
+  # Playing with sensitive data
+  $pass = lookup('test_password')
+  echo { "wrapped_pass: ${pass}": }
+  echo { "unwrapped_pass: ${pass.unwrap}": }
+
 }
 
 node 'pe-primary.garrett.rowell' {
