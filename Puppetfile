@@ -29,6 +29,8 @@ mod 'ipcrm-echo', '0.1.8'
 mod 'puppetlabs-registry', '5.0.1'
 mod 'dylanratcliffe-safe_include', '1.0.3'
 mod 'tragiccode-azure_key_vault', '3.1.1'
+mod 'puppetlabs-ruby_task_helper', '0.6.1'
+mod 'puppetlabs-bash_task_helper', '2.0.0'
 
 #mod 'dsc-csecurityoptions', '3.1.3-0-0'
 mod 'puppetlabs-pwshlib', '0.10.3'
