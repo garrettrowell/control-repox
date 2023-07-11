@@ -43,7 +43,7 @@ class Azure_key_vault_get_secret < TaskHelper
     secret_response_body = JSON.parse(secret_response.body)
 #    puts JSON.pretty_generate(secret_response_body)
 
-    { secret_name: secret_response_body['value'] }
+    { "#{secret_name}": secret_response_body['value'] }
   end
 end
 
