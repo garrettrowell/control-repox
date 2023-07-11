@@ -7,7 +7,7 @@ require 'json'
 require_relative "../../ruby_task_helper/files/task_helper.rb"
 
 class Azure_key_vault_get_secret < TaskHelper
-  def task(client_id: nil, client_secret: nil, tenant_id: nil, vault_api_version: nil, secret_version: nil, vault_name: nil, secret_name: nil)
+  def task(client_id: nil, client_secret: nil, tenant_id: nil, vault_api_version: nil, secret_version: nil, vault_name: nil, secret_name: nil, **kwargs)
     # Get Bearer Token
     token_uri = URI("https://login.microsoftonline.com/#{tenant_id}/oauth2/v2.0/token")
     token_header = { 'Content-Type' => 'application/x-www-form-urlencoded' }
