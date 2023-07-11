@@ -48,5 +48,5 @@ class Azure_key_vault_get_secret < TaskHelper
 end
 
 if __FILE__ == $0
-  MyClass.run
+  Azure_key_vault_get_secret.run
 end
