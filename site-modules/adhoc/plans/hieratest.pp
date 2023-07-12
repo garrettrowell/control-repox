@@ -7,7 +7,8 @@ plan adhoc::hieratest(
 ) {
 
   # lookup the desired secret on the primary server because we assume the actual target(s) won't have a puppet agent
-  $secret_block = apply(get_target('pe-primary.garrett.rowell')) {
+  $primary_server = 'pe-primary.garrett.rowell'
+  $secret_block = apply(get_target($primary_server), _description => "lookup '${lookup_secret}' on ${primary_server}") {
     notify { $lookup_secret:
       message => "${lookup($lookup_secret).unwrap}"
     }
@@ -19,12 +20,14 @@ plan adhoc::hieratest(
     'secret': {
       #purely for development...
       out::message('secret')
-      out::message($retrieved_secret)
+      #      out::message($retrieved_secret)
+      run_command("echo ${retrieved_secret}", $targets)
     }
     'certificate': {
       out::message('cert')
       $decoded_cert = base64('decode', $retrieved_secret)
-      out::message("${decoded_cert}")
+      #out::message("${decoded_cert}")
+      run_command("echo ${decoded_cert}", $targets)
     }
   }
 
