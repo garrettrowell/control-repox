@@ -23,11 +23,11 @@ plan adhoc::hieratest(
       run_command("echo ${retrieved_secret}", $targets)
     }
     'certificate': {
-      # message and cat command for development...
+      # out::message and openssl command for development...
       out::message('cert')
       $certfile = '/tmp/test_cert.pkcs12'
       run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $targets)
-      run_command("cat ${certfile}", $targets)
+      run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $targets)
 
     }
   }
