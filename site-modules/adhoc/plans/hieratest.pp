@@ -10,7 +10,7 @@ plan adhoc::hieratest(
     #  message => lookup('test_password').unwrap
     #}
   }
-  out::message($test_pass)
+  out::message($test_pass.to_data)
   #$test = lookup('test_secret')
   #out::message($test)
   #$test_pass = lookup('atest')
