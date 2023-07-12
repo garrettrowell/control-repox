@@ -20,7 +20,6 @@ plan adhoc::hieratest(
     'secret': {
       #purely for development...
       out::message('secret')
-      out::message($retrieved_secret)
       get_targets($targets).each |$target| {
         run_command("printf ${retrieved_secret}", $target, "printf ${lookup_secret} on ${target}")
       }
