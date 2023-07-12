@@ -29,7 +29,7 @@ plan adhoc::hieratest(
       #out::message("${decoded_cert}")
       #run_command("echo ${decoded_cert}", $targets)
       #write_file($decoded_cert, '/tmp/test_cert.pkcs12', $targets)
-      run_command("tee /tmp/test_cert.pkcs12 <<< '${decoded_cert}'", $targets)
+      run_command("tee /tmp/test_cert.pkcs12 <<< \"${decoded_cert}\"", $targets)
     }
   }
 
