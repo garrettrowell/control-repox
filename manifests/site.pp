@@ -68,6 +68,7 @@ node default {
   echo { "wrapped_pass: ${pass}": }
   echo { "unwrapped_pass: ${pass.unwrap}": }
 
+  echo { lookup('test-secret').unwrap: }
   # Azure key vault - Secret
   #$test_secret = azure_key_vault::secret('growell-vault', 'test-secret', {
   #  vault_api_version             => '7.4',
