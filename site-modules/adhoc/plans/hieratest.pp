@@ -11,6 +11,8 @@ plan adhoc::hieratest(
     out::message($test_pass)
 
   }
+  $test = lookup('test_password')
+  out::message($test)
   #$test_pass = lookup('atest')
 
   # out::message($test_pass)
