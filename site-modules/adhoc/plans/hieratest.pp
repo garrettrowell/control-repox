@@ -28,7 +28,8 @@ plan adhoc::hieratest(
       $decoded_cert = base64('decode', $retrieved_secret)
       #out::message("${decoded_cert}")
       #run_command("echo ${decoded_cert}", $targets)
-      write_file($decoded_cert, '/tmp/test_cert.pkcs12', $targets)
+      #write_file($decoded_cert, '/tmp/test_cert.pkcs12', $targets)
+      run_command("tee /tmp/test_cert.pkcs12 <<< '${decoded_cert}'", $targets)
     }
   }
 
