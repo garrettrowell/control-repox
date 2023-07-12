@@ -20,16 +20,15 @@ plan adhoc::hieratest(
     'secret': {
       #purely for development...
       out::message('secret')
-      #      out::message($retrieved_secret)
       run_command("echo ${retrieved_secret}", $targets)
     }
     'certificate': {
+      # message and cat command for development...
       out::message('cert')
-      $decoded_cert = base64('decode', $retrieved_secret)
-      #out::message("${decoded_cert}")
-      #run_command("echo ${decoded_cert}", $targets)
-      #write_file($decoded_cert, '/tmp/test_cert.pkcs12', $targets)
-      run_command("tee /tmp/test_cert.pkcs12 <<< \"${retrieved_secret}\"", $targets)
+      $certfile = '/tmp/test_cert.pkcs12'
+      run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $targets)
+      run_command("cat ${certfile}", $targets)
+
     }
   }
 
