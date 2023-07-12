@@ -20,15 +20,18 @@ plan adhoc::hieratest(
     'secret': {
       #purely for development...
       out::message('secret')
-      run_command("echo ${retrieved_secret}", $targets)
+      get_targets($targets).each |$target| {
+        run_command("echo ${retrieved_secret}", $target, "echoing ${lookup_secret} on ${target}")
+      }
     }
     'certificate': {
       # out::message and openssl command for development...
       out::message('cert')
       $certfile = '/tmp/test_cert.pkcs12'
-      run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $targets)
-      run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $targets)
-
+      get_targets($targets).each |$target| {
+        run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $target, "write certificate to ${certfile} on ${target}")
+        run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $target, "reading ${certfile} on ${target}")
+      }
     }
   }
 
