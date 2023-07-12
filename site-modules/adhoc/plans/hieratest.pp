@@ -21,7 +21,7 @@ plan adhoc::hieratest(
       out::message($retrieved_secret)
     }
     'certificate': {
-      $decoded_cert = base64('decode', $retrieved_secret)
+      $decoded_cert = base64('decode', "${retrieved_secret}")
       out::message($decoded_cert)
     }
   }
