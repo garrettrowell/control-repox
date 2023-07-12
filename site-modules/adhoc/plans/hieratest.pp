@@ -8,7 +8,7 @@ plan adhoc::hieratest(
     $test_pass = apply($target) {
       echo { lookup('test_password').unwrap: }
     }
-    out::message($test_pass)
+    #    out::message($test_pass)
   }
   out::message($result)
   #$test = lookup('test_secret')
