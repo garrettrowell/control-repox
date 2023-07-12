@@ -22,6 +22,7 @@ hierarchy:
       key_replacement_token: '_'
       confine_to_keys:
         - 'test-secret'
+        - 'test-cert'
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
