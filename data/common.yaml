@@ -1,4 +1,5 @@
 ---
+atest: some_string
 puppet_operational_dashboards::profile::dashboards::grafana_password: puppetlabs
 lookup_options:
   puppet_operational_dashboards::profile::dashboards::grafana_password:
