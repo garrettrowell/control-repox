@@ -10,7 +10,7 @@ plan adhoc::hieratest(
       message => "${lookup($lookup_secret).unwrap}"
     }
   }
-  $retrieved_secret = $secret_block.to_data[0]['value']['report']['resource_statuses']["Notify[${lookup_secret}]"]['events']
+  $retrieved_secret = $secret_block.to_data[0]['value']['report']['resource_statuses']["Notify[${lookup_secret}]"]['events'][0]['desired_value']
   out::message($retrieved_secret)
   #$test = lookup('test_secret')
   #out::message($test)
