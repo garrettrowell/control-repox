@@ -5,7 +5,7 @@ plan adhoc::hieratest(
 ) {
 
   $test_pass = apply(get_target('pe-primary.garrett.rowell')) {
-    lookup('test-secret').unwrap
+    return(lookup('test-secret').unwrap)
     #echo { 'test_password':
     #  message => lookup('test_password').unwrap
     #}
