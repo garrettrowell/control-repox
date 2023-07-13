@@ -37,7 +37,7 @@ plan adhoc::hieratest(
     #$err = $secret_block['_error']
     #out::message("${err['kind']}, ${err['msg']}")
     $err = $secret_block[0].error
-    $err
+    log::error($err)
     #out::message("${err}")
   }
 
