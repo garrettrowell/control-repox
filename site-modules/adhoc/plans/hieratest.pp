@@ -1,10 +1,9 @@
 # This is a description for my plan
 plan adhoc::hieratest(
-  # input parameters go here
   TargetSpec $targets,
   String $lookup_secret,
   Enum['certificate','secret'] $type = 'secret', # default to secret but allow certs
-  Optional[Stdlib::Absolutepath] $certfile,
+  Optional[Stdlib::Absolutepath] $certfile = undef,
 ) {
 
   # lookup the desired secret on the primary server because we assume the actual target(s) won't have a puppet agent
