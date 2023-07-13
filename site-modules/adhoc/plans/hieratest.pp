@@ -1,5 +1,5 @@
 # This is a description for my plan
-plan adhoc::hieratest(
+plan adhoc::azure_vault_agentless(
   TargetSpec $targets,
   String $lookup_secret,
   Enum['certificate','secret'] $type = 'secret', # default to secret but allow certs
