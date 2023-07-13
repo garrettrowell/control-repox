@@ -4,6 +4,7 @@ plan adhoc::hieratest(
   TargetSpec $targets,
   String $lookup_secret,
   Enum['certificate','secret'] $type = 'secret', # default to secret but allow certs
+  Optional[Stdlib::Absolutepath] $certfile,
 ) {
 
   # lookup the desired secret on the primary server because we assume the actual target(s) won't have a puppet agent
@@ -26,7 +27,7 @@ plan adhoc::hieratest(
         }
       }
       'certificate': {
-        $certfile = '/tmp/test_cert.pkcs12'
+        #$certfile = '/tmp/test_cert.pkcs12'
         get_targets($targets).each |$target| {
           run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $target, "write certificate to ${certfile} on ${target}")
           run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $target, "reading ${certfile} on ${target}")
