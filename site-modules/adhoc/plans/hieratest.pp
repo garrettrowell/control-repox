@@ -34,7 +34,8 @@ plan adhoc::hieratest(
       }
     }
   } else {
-    out::message("${secret_block}")
+    $err = secret_block[0]['_error']
+    out::message("${err['kind']}, ${err['msg']}")
   }
 
 }
