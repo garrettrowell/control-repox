@@ -34,7 +34,7 @@ plan adhoc::hieratest(
       }
     }
   } else {
-    out::message("msg: ${secret_block.message}")
+    out::message("${secret_block}")
   }
 
 }
