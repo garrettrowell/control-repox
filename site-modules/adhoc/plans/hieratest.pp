@@ -21,13 +21,15 @@ plan adhoc::hieratest(
 
     case $type {
       'secret': {
-        get_targets($targets).each |$target| {
+        parallelize($targets) |$target| {
+        #get_targets($targets).each |$target| {
           run_command("printf '${retrieved_secret}'", $target, "printf ${lookup_secret} on ${target}")
         }
       }
       'certificate': {
         $certfile = '/tmp/test_cert.pkcs12'
-        get_targets($targets).each |$target| {
+        parallelize($targets) |$t| {
+        #get_targets($targets).each |$target| {
           run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $target, "write certificate to ${certfile} on ${target}")
           run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $target, "reading ${certfile} on ${target}")
         }
