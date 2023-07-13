@@ -34,11 +34,13 @@ plan adhoc::hieratest(
       }
     }
   } else {
-    $err = $secret_block.to_data[0]['_error']
-    out::message({
-      'kind'    => $err['kind'],
-      'message' => $err['msg']
-    })
+    $err = $secret_block.to_data[0]
+    out::message($err)
+
+    #    out::message({
+    #      'kind'    => $err['kind'],
+    #      'message' => $err['msg']
+    #    })
   }
 
 }
