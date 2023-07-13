@@ -13,26 +13,28 @@ plan adhoc::hieratest(
       message => "${lookup($lookup_secret).unwrap}"
     }
   }
-  # take advantage of only ONE result block that always creates ONE corrective change
-  $retrieved_secret = $secret_block.to_data[0]['value']['report']['resource_statuses']["Notify[${lookup_secret}]"]['events'][0]['desired_value']
 
-  case $type {
-    'secret': {
-      #purely for development...
-      out::message('secret')
-      get_targets($targets).each |$target| {
-        run_command("printf ${retrieved_secret}", $target, "printf ${lookup_secret} on ${target}")
+  # if lookup successful
+  if $secret_block.ok {
+    # take advantage of only ONE result block that always creates ONE corrective change
+    $retrieved_secret = $secret_block.to_data[0]['value']['report']['resource_statuses']["Notify[${lookup_secret}]"]['events'][0]['desired_value']
+
+    case $type {
+      'secret': {
+        get_targets($targets).each |$target| {
+          run_command("printf ${retrieved_secret}", $target, "printf ${lookup_secret} on ${target}")
+        }
+      }
+      'certificate': {
+        $certfile = '/tmp/test_cert.pkcs12'
+        get_targets($targets).each |$target| {
+          run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $target, "write certificate to ${certfile} on ${target}")
+          run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $target, "reading ${certfile} on ${target}")
+        }
       }
     }
-    'certificate': {
-      # out::message and openssl command for development...
-      out::message('cert')
-      $certfile = '/tmp/test_cert.pkcs12'
-      get_targets($targets).each |$target| {
-        run_command("base64 --decode <<< '${retrieved_secret}' > ${certfile}", $target, "write certificate to ${certfile} on ${target}")
-        run_command("openssl pkcs12 -in ${certfile} -info -nokeys -passout pass: -passin pass:''", $target, "reading ${certfile} on ${target}")
-      }
-    }
+  } else {
+    out::message("err: ${secret_block.error}, msg: ${secret_block.message}")
   }
 
 }
