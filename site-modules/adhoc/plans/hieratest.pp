@@ -36,7 +36,7 @@ plan adhoc::hieratest(
   } else {
     #$err = $secret_block['_error']
     #out::message("${err['kind']}, ${err['msg']}")
-    $err = $secret_block[0]
+    $err = $secret_block[0].error
     out::message("${err}")
   }
 
