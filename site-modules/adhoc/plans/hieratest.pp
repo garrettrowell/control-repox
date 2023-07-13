@@ -22,7 +22,7 @@ plan adhoc::hieratest(
     case $type {
       'secret': {
         get_targets($targets).each |$target| {
-          run_command("printf ${retrieved_secret}", $target, "printf ${lookup_secret} on ${target}")
+          run_command("echo ${retrieved_secret}", $target, "echo ${lookup_secret} on ${target}")
         }
       }
       'certificate': {
