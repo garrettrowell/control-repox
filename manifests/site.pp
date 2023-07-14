@@ -111,4 +111,27 @@ node 'pe-primary.garrett.rowell' {
   Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
     allow => [$trusted['certname'], '$1'],
   }
+
+  # Allow hiera backends to work with orchestrator
+  file {
+    default:
+      ensure => file,
+      owner  => 'pe-puppet',
+      group  => 'pe-orchestration-services',
+      mode   => '0440',
+    ;
+    [
+      "${settings::confdir}/azure_key_vault_credentials.yaml",
+      "${settings::confdir}/eyaml/private_key.pkcs7.pem",
+      "${settings::confdir}/eyaml/public_key.pkcs7.pem",
+    ]:
+      # use defaults
+    ;
+    "${settings::confdir}/eyaml":
+      ensure => directory,
+      mode   => '0550',
+    ;
+  }
+
+
 }
