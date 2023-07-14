@@ -46,7 +46,7 @@ plan_hierarchy:
   #    key_replacement_token: '_'
   #    confine_to_keys:
   #      - 'test-secret'
-  - name: 'Yaml backend'
-    data_hash: yaml_data
-    paths:
-      - 'plans.yaml'
+  #- name: 'Yaml backend'
+  #  data_hash: yaml_data
+  #  paths:
+  #    - 'plans.yaml'
