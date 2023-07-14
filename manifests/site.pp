@@ -112,7 +112,13 @@ node 'pe-primary.garrett.rowell' {
     allow => [$trusted['certname'], '$1'],
   }
 
-  # Allow hiera backends to work with orchestrator
+  # Place azure creds + allow hiera backends to be used with plans
+  $azure_creds = {
+    'tenant_id'     => lookup('azure_tenant_id'),
+    'client_id'     => lookup('azure_client_id'),
+    'client_secret' => lookup('azure_client_secret'),
+  }
+
   file {
     default:
       ensure => file,
@@ -120,8 +126,10 @@ node 'pe-primary.garrett.rowell' {
       group  => 'pe-orchestration-services',
       mode   => '0440',
     ;
+    "${settings::confdir}/azure_key_vault_credentials.yaml":
+      content => stdlib::to_yaml($azure_creds),
+    ;
     [
-      "${settings::confdir}/azure_key_vault_credentials.yaml",
       "${settings::confdir}/eyaml/private_key.pkcs7.pem",
       "${settings::confdir}/eyaml/public_key.pkcs7.pem",
     ]:
