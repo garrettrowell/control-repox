@@ -5,7 +5,7 @@ plan adhoc::test(
 ) {
 
   $pass = lookup('test_password')
-  out::message("${pass}")
+  out::message("${pass.unwrap}")
   # plan steps go here
 
 }
