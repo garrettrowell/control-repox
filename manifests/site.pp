@@ -116,7 +116,7 @@ node 'pe-primary.garrett.rowell' {
   $azure_creds = {
     'tenant_id'     => lookup('azure_tenant_id'),
     'client_id'     => lookup('azure_client_id'),
-    'client_secret' => lookup('azure_client_secret'),
+    'client_secret' => lookup('azure_client_secret').unwrap,
   }
 
   file {
@@ -127,7 +127,7 @@ node 'pe-primary.garrett.rowell' {
       mode   => '0440',
     ;
     "${settings::confdir}/azure_key_vault_credentials.yaml":
-      content => to_yaml($azure_creds),
+      content => Sensitive(to_yaml($azure_creds)),
     ;
     [
       "${settings::confdir}/eyaml/private_key.pkcs7.pem",
