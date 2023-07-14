@@ -4,7 +4,7 @@ plan adhoc::test(
   TargetSpec $targets,
 ) {
 
-  $pass = lookup('test-secret')
+  $pass = lookup('test-cert')
   out::message("${pass.unwrap}")
   # plan steps go here
 
