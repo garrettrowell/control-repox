@@ -127,7 +127,7 @@ node 'pe-primary.garrett.rowell' {
       mode   => '0440',
     ;
     "${settings::confdir}/azure_key_vault_credentials.yaml":
-      content => stdlib::to_yaml($azure_creds),
+      content => to_yaml($azure_creds),
     ;
     [
       "${settings::confdir}/eyaml/private_key.pkcs7.pem",
