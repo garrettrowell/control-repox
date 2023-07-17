@@ -75,8 +75,8 @@ node default {
   #$test_secret = azure_key_vault::secret('growell-vault', 'test-secret', {
   #  vault_api_version             => '7.4',
   #  service_principal_credentials => {
-  #    tenant_id     => '6917e1c4-8f49-4999-9a74-fcc94e60bc34',
-  #    client_id     => 'b050f2f3-75b5-4782-8fc2-e61a314a1af9',
+  #    tenant_id     => lookup('azure_tenant_id'),
+  #    client_id     => lookup('azure_client_id'),
   #    client_secret => lookup('azure_client_secret').unwrap,
   #  }
   #})
@@ -91,12 +91,13 @@ node default {
   #$test_cert = azure_key_vault::secret('growell-vault', 'test-cert', {
   #  vault_api_version             => '7.4',
   #  service_principal_credentials => {
-  #    tenant_id     => '6917e1c4-8f49-4999-9a74-fcc94e60bc34',
-  #    client_id     => 'b050f2f3-75b5-4782-8fc2-e61a314a1af9',
+  #    tenant_id     => lookup('azure_tenant_id'),
+  #    client_id     => lookup('azure_client_id'),
   #    client_secret => lookup('azure_client_secret').unwrap,
   #  }
   #})
   #
+  ## base64 function from stdlib
   #file { '/tmp/test_cert.pkcs12':
   #  ensure  => file,
   #  content => base64('decode', "${test_cert.unwrap}")
