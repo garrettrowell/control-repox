@@ -47,7 +47,7 @@ plan_hierarchy:
       confine_to_keys:
         - 'test-secret'
         - 'test-cert'
-  #- name: 'Yaml backend'
-  #  data_hash: yaml_data
-  #  paths:
-  #    - 'plans.yaml'
+  - name: 'Yaml backend'
+    data_hash: yaml_data
+    paths:
+      - 'common.yaml'

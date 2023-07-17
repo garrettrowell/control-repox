@@ -112,12 +112,17 @@ node 'pe-primary.garrett.rowell' {
     allow => [$trusted['certname'], '$1'],
   }
 
-  # Place azure creds + allow hiera backends to be used with plans
+  # Authentication data required to configure azure_key_vault hiera backend
   $azure_creds = {
     'tenant_id'     => lookup('azure_tenant_id'),
     'client_id'     => lookup('azure_client_id'),
     'client_secret' => lookup('azure_client_secret').unwrap,
   }
+
+  # Manage eyaml keys and azure_key_vault_credentials to allow use
+  #   with plans
+  $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
+  $eyaml_public_key  = "${settings::confdir}/eyaml/public_key.pkcs7.pem"
 
   file {
     default:
@@ -130,8 +135,8 @@ node 'pe-primary.garrett.rowell' {
       content => Sensitive(to_yaml($azure_creds)),
     ;
     [
-      "${settings::confdir}/eyaml/private_key.pkcs7.pem",
-      "${settings::confdir}/eyaml/public_key.pkcs7.pem",
+      $eyaml_private_key,
+      $eyaml_public_key,
     ]:
       # use defaults
     ;
@@ -141,5 +146,20 @@ node 'pe-primary.garrett.rowell' {
     ;
   }
 
+  # Configure hiera-eyaml cli for convenience
+  file {
+    '/etc/eyaml':
+      ensure => directory,
+    ;
+    '/etc/eyaml/config.yaml':
+      ensure  => file,
+      content => to_yaml(
+        {
+          'pkcs7_private_key' => $eyaml_private_key,
+          'pkcs7_public_key'  => $eyaml_public_key,
+        }
+      ),
+    ;
+  }
 
 }

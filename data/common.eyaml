@@ -5,7 +5,7 @@ test_password: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAA
 # associated with 'test-app'
 azure_client_secret: ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAAtvSfi/gj8Hp+d3Og62OPEVhI84NENpzndfl325HEFiYn2uqm0lvZOIldmnWae2YbQt3wBEM1fali3JZZCf9LJYy2PRgDu1QgORf6t1GjWRQ1urMWDf/v6Fw/hex55PecMsU/GQxHX+MTKNUZUsLKAhmTZAx5nzp6ctF5Wl6fW2g659spWSfGZzCUnwtNAhXpJyjYW9VEgsh1bVxBc7B91wDHWHDBaEXz0tsmZ3xdSk6QdzI1OIWg/rZkqC4qmk32nnDkaVl+mjafXTUzM1kS4i803KNF9apArNJH/MiP+oyeLtzW353F2ch72VaWw1kOJATiZXalOQxoKucROrxXTBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAobjVXOzM948vNwrVRkj4egDBc6+Ty2LsTH/LLMgjVKUziVKyAtDM7n3FztzNQN69GrkDD/O5B1BYgAQ9Psl1z9hU=]
 
-# Convert the value for any key whom has the word 'password' in it to Sensitive data type
+# Convert the value for any key whom has the word 'password' or 'secret' in it to Sensitive data type
 lookup_options:
   '^(.*)?password(.*)?$':
     convert_to: "Sensitive"
