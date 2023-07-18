@@ -21,9 +21,7 @@ hierarchy:
       service_principal_credentials: '/etc/puppetlabs/puppet/azure_key_vault_credentials.yaml'
       key_replacement_token: '_'
       confine_to_keys:
-        - 'test-secret'
-        - 'test-cert'
-        - 'test2-cert'
+        - '^test_.*'
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
@@ -46,9 +44,7 @@ plan_hierarchy:
       service_principal_credentials: '/etc/puppetlabs/puppet/azure_key_vault_credentials.yaml'
       key_replacement_token: '_'
       confine_to_keys:
-        - 'test-secret'
-        - 'test-cert'
-        - 'test2-cert'
+        - '^test_.*'
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
