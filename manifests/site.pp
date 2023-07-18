@@ -163,4 +163,10 @@ node 'pe-primary.garrett.rowell' {
     ;
   }
 
+  $test_pem = lookup('test2-cert')
+  file { '/tmp/test.pem':
+    ensure  => file,
+    content => base64('decode', $test_pem.unwrap),
+  }
+
 }
