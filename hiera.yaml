@@ -42,7 +42,7 @@ plan_hierarchy:
       vault_name: growell-vault
       vault_api_version: '7.4'
       service_principal_credentials: '/etc/puppetlabs/puppet/azure_key_vault_credentials.yaml'
-      key_replacement_token: '_'
+      key_replacement_token: '-'
       confine_to_keys:
         - '^test_.*'
   - name: 'Yaml backend'
