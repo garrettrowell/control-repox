@@ -23,6 +23,7 @@ hierarchy:
       confine_to_keys:
         - 'test-secret'
         - 'test-cert'
+        - 'test2-cert'
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
@@ -47,6 +48,7 @@ plan_hierarchy:
       confine_to_keys:
         - 'test-secret'
         - 'test-cert'
+        - 'test2-cert'
   - name: 'Yaml backend'
     data_hash: yaml_data
     paths:
