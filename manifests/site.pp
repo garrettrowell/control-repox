@@ -115,55 +115,55 @@ node 'pe-primary.garrett.rowell' {
     allow => [$trusted['certname'], '$1'],
   }
 
-  # Authentication data required to configure azure_key_vault hiera backend
-  $azure_creds = {
-    'tenant_id'     => lookup('azure_tenant_id'),
-    'client_id'     => lookup('azure_client_id'),
-    'client_secret' => lookup('azure_client_secret').unwrap,
-  }
-
-  # Manage eyaml keys and azure_key_vault_credentials to allow use
-  #   with plans
-  $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
-  $eyaml_public_key  = "${settings::confdir}/eyaml/public_key.pkcs7.pem"
-
-  file {
-    default:
-      ensure => file,
-      owner  => 'pe-puppet',
-      group  => 'pe-orchestration-services',
-      mode   => '0440',
-    ;
-    "${settings::confdir}/azure_key_vault_credentials.yaml":
-      content => Sensitive(to_yaml($azure_creds)),
-    ;
-    [
-      $eyaml_private_key,
-      $eyaml_public_key,
-    ]:
-      # use defaults
-    ;
-    "${settings::confdir}/eyaml":
-      ensure => directory,
-      mode   => '0550',
-    ;
-  }
-
-  # Configure hiera-eyaml cli for convenience
-  file {
-    '/etc/eyaml':
-      ensure => directory,
-    ;
-    '/etc/eyaml/config.yaml':
-      ensure  => file,
-      content => to_yaml(
-        {
-          'pkcs7_private_key' => $eyaml_private_key,
-          'pkcs7_public_key'  => $eyaml_public_key,
-        }
-      ),
-    ;
-  }
+  #  # Authentication data required to configure azure_key_vault hiera backend
+  #  $azure_creds = {
+  #    'tenant_id'     => lookup('azure_tenant_id'),
+  #    'client_id'     => lookup('azure_client_id'),
+  #    'client_secret' => lookup('azure_client_secret').unwrap,
+  #  }
+  #
+  #  # Manage eyaml keys and azure_key_vault_credentials to allow use
+  #  #   with plans
+  #  $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
+  #  $eyaml_public_key  = "${settings::confdir}/eyaml/public_key.pkcs7.pem"
+  #
+  #  file {
+  #    default:
+  #      ensure => file,
+  #      owner  => 'pe-puppet',
+  #      group  => 'pe-orchestration-services',
+  #      mode   => '0440',
+  #    ;
+  #    "${settings::confdir}/azure_key_vault_credentials.yaml":
+  #      content => Sensitive(to_yaml($azure_creds)),
+  #    ;
+  #    [
+  #      $eyaml_private_key,
+  #      $eyaml_public_key,
+  #    ]:
+  #      # use defaults
+  #    ;
+  #    "${settings::confdir}/eyaml":
+  #      ensure => directory,
+  #      mode   => '0550',
+  #    ;
+  #  }
+  #
+  #  # Configure hiera-eyaml cli for convenience
+  #  file {
+  #    '/etc/eyaml':
+  #      ensure => directory,
+  #    ;
+  #    '/etc/eyaml/config.yaml':
+  #      ensure  => file,
+  #      content => to_yaml(
+  #        {
+  #          'pkcs7_private_key' => $eyaml_private_key,
+  #          'pkcs7_public_key'  => $eyaml_public_key,
+  #        }
+  #      ),
+  #    ;
+  #  }
 
   #$test_pem = lookup('test2_cert')
   #file { '/tmp/test.pem':
