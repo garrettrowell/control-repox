@@ -115,13 +115,13 @@ node 'pe-primary.garrett.rowell' {
     allow => [$trusted['certname'], '$1'],
   }
 
-  #  # Authentication data required to configure azure_key_vault hiera backend
-  #  $azure_creds = {
-  #    'tenant_id'     => lookup('azure_tenant_id'),
-  #    'client_id'     => lookup('azure_client_id'),
-  #    'client_secret' => lookup('azure_client_secret').unwrap,
-  #  }
-  #
+  # Authentication data required to configure azure_key_vault hiera backend
+  $azure_creds = {
+    'tenant_id'     => lookup('azure_tenant_id'),
+    'client_id'     => lookup('azure_client_id'),
+    'client_secret' => lookup('azure_client_secret').unwrap,
+  }
+
   # Manage eyaml keys and azure_key_vault_credentials to allow use
   #   with plans
   $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
@@ -134,9 +134,9 @@ node 'pe-primary.garrett.rowell' {
       group  => 'pe-orchestration-services',
       mode   => '0440',
     ;
-  #    "${settings::confdir}/azure_key_vault_credentials.yaml":
-  #      content => Sensitive(to_yaml($azure_creds)),
-  #    ;
+    "${settings::confdir}/azure_key_vault_credentials.yaml":
+      content => Sensitive(to_yaml($azure_creds)),
+    ;
     [
       $eyaml_private_key,
       $eyaml_public_key,
