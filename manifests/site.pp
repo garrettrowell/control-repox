@@ -106,6 +106,8 @@ node default {
 }
 
 node 'pe-primary.garrett.rowell' {
+  include dropsonde
+
   # Override PE managed rule to allow the primary server to request
   #   catalogs for any node. This should be removed once migration
   #   is complete

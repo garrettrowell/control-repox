@@ -36,6 +36,7 @@ mod 'puppetlabs-bash_task_helper', '2.0.0'
 mod 'puppetlabs-pwshlib', '0.10.3'
 mod 'puppetlabs-powershell', '6.0.0'
 mod 'puppetlabs-chocolatey', '8.0.0'
+mod 'puppetlabs-dropsonde', '0.2.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
