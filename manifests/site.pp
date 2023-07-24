@@ -64,9 +64,9 @@ node default {
   }
 
   # Playing with sensitive data
-  $pass = lookup('test_password')
-  echo { "wrapped_pass: ${pass}": }
-  echo { "unwrapped_pass: ${pass.unwrap}": }
+  #$pass = lookup('test_password')
+  #echo { "wrapped_pass: ${pass}": }
+  #echo { "unwrapped_pass: ${pass.unwrap}": }
 
   # Azure key vault - secret with hiera backend
   #echo { lookup('test-secret').unwrap: }
