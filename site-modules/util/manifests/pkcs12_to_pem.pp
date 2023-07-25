@@ -63,7 +63,8 @@ define util::pkcs12_to_pem (
     owner   => $pem_cert_owner,
     group   => $pem_cert_group,
     mode    => $pem_cert_mode,
-    require => Openssl::Export::Pem_cert["${title} cert"],
+    require => Util::Openssl::Pem_cert["${title} cert"],
+    #    require => Openssl::Export::Pem_cert["${title} cert"],
   }
 
   file { "${title} pem_key":
@@ -72,7 +73,8 @@ define util::pkcs12_to_pem (
     owner  => $pem_key_owner,
     group  => $pem_key_group,
     mode   => $pem_key_mode,
-    require => Openssl::Export::Pem_key["${title} cert_key"],
+    require => Util::Openssl::Pem_key["${title} cert_key"],
+    #    require => Openssl::Export::Pem_key["${title} cert_key"],
   }
 
 }
