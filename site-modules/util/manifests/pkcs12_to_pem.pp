@@ -39,8 +39,7 @@ define util::pkcs12_to_pem (
       }
     }, $cert_version)
   }
-  #
-  #  echo { "cert ${cert_from_azure.unwrap}": }
+
   file { "${title} pkcs12_cert":
     ensure  => file,
     owner   => $pkcs12_owner,
