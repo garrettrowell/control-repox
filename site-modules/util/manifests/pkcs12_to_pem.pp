@@ -25,7 +25,7 @@ define util::pkcs12_to_pem (
   String[1] $pkcs12_owner,
   String[1] $pkcs12_group,
   String[1] $pkcs12_mode,
-  Optional[String] $cert_version = undef
+  Optional[String] $cert_version,
 ) {
 
   $cert_from_azure = $cert_version ? {
