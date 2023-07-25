@@ -39,10 +39,10 @@ define util::openssl::pem_key (
     ]
 
     exec { "Export ${pfx_cert} to ${pem_key}":
-      command => inline_template('<%= @cmd.join(" ") %>'),
-      path    => $facts['path'],
-      creates => $pem_key,
-      refresh => inline_template('<%= @cmd.join(" ") %>'),
+      command        => inline_template('<%= @cmd.join(" ") %>'),
+      path           => $facts['path'],
+      refreshonly    => true,
+      #      creates => $pem_key,
     }
   } else {
     file { $pem_key:

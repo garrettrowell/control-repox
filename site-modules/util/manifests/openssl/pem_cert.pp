@@ -55,10 +55,9 @@ define util::openssl::pem_cert (
     ]
 
     exec { "Export ${in_cert} to ${pem_cert}":
-      command => inline_template('<%= @cmd.join(" ") %>'),
-      path    => $facts['path'],
-      creates => $pem_cert,
-      refresh => inline_template('<%= @cmd.join(" ") %>'),
+      command     => inline_template('<%= @cmd.join(" ") %>'),
+      path        => $facts['path'],
+      refreshonly => true,
     }
   } else {
     file { $pem_cert:
