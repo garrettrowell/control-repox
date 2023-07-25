@@ -29,7 +29,11 @@ define util::pkcs12_to_pem (
     content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 
-  #  openssl::export::pem_key { "${title} cert_key":
+  # this define was originally 'openssl::export::pem_key'
+  #   mod 'puppet-openssl', '2.0.1'
+  # but the 'creates' attribute was not allowing certs to be extracted
+  # on update. uses 'refreshonly' instead
+  #
   util::openssl::pem_key { "${title} cert_key":
     ensure    => 'present',
     pfx_cert  => $pkcs12_path,
@@ -38,12 +42,11 @@ define util::pkcs12_to_pem (
     subscribe => File["${title} pkcs12_cert"],
   }
 
-  #  Exec["Export ${pkcs12_path} to ${pem_key_path}"] {
-  #    create      => undef,
-  #    refreshonly => true
-  #  }
-
-  #  openssl::export::pem_cert { "${title} cert":
+  # this define was originally 'openssl::export::pem_cert'
+  #   mod 'puppet-openssl', '2.0.1'
+  # but the 'creates' attribute was not allowing certs to be extracted
+  # on update. uses 'refreshonly' instead
+  #
   util::openssl::pem_cert { "${title} cert":
     ensure   => 'present',
     pfx_cert => $pkcs12_path,
@@ -51,11 +54,6 @@ define util::pkcs12_to_pem (
     in_pass  => '',
     subscribe => File["${title} pkcs12_cert"],
   }
-
-  #  Exec["Export ${pkcs12_path} to ${pem_cert_path}"] {
-  #    create      => undef,
-  #    refreshonly => true
-  #  }
 
   file { "${title} pem_cert":
     ensure  => present,

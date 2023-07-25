@@ -1,5 +1,10 @@
 # @summary Export a key to PEM format
 #
+# started life as 'openssl::export::pem_key'
+#   mod 'puppet-openssl', '2.0.1'
+#
+# replaced 'creates' in exec resource with 'refreshonly => true'
+#
 # @param pfx_cert
 #   PFX certificate/key container
 # @param pem_key

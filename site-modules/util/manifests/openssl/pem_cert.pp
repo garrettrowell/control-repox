@@ -1,5 +1,9 @@
-
 # @summary Export certificate(s) to PEM/x509 format
+#
+# started life as 'openssl::export::pem_cert'
+#   mod 'puppet-openssl', '2.0.1'
+#
+# replaced 'creates' in exec resource with 'refreshonly => true'
 #
 # @param ensure
 #   Whether the certificate file should exist
