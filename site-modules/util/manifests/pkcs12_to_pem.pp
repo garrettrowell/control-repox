@@ -29,7 +29,7 @@ define util::pkcs12_to_pem (
 ) {
 
   $cert_from_azure = $cert_version ? {
-    undef   => lookup($pkcs12_azure_cert).unwrap,
+    undef   => lookup($pkcs12_azure_cert),
     default => azure_key_vault::secret('growell-vault', $pkcs12_azure_cert, {
       vault_api_version             => '7.4',
       service_principal_credentials => {
@@ -37,7 +37,7 @@ define util::pkcs12_to_pem (
         client_id     => lookup('azure_client_id'),
         client_secret => lookup('azure_client_secret').unwrap,
       }
-    }, $cert_version).unwrap
+    }, $cert_version)
   }
   #
   #  echo { "cert ${cert_from_azure.unwrap}": }
@@ -47,7 +47,7 @@ define util::pkcs12_to_pem (
     group   => $pkcs12_group,
     mode    => $pkcs12_mode,
     path    => $pkcs12_path,
-    content => base64('decode', $cert_from_azure),
+    content => base64('decode', $cert_from_azure.unwrap),
     #content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 
