@@ -173,7 +173,7 @@ node 'pe-primary.garrett.rowell' {
   #}
 
   util::pkcs12_to_pem { 'atest':
-    pkcs12_azure_cert => 'test_cert',
+    pkcs12_azure_cert => 'test-cert',
     pkcs12_path       => '/tmp/atest.pkcs12',
     pem_key_path      => '/tmp/atest.key',
     pem_cert_path     => '/tmp/atest.pem',
