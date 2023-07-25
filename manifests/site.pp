@@ -172,4 +172,17 @@ node 'pe-primary.garrett.rowell' {
   #  #    content => base64('decode', $test_pem.unwrap),
   #}
 
+  util::pkcs12_to_pem { 'atest':
+    pkcs12_azure_cert => 'test_cert',
+    pkcs12_path       => '/tmp/atest.pkcs12',
+    pem_key_path      => '/tmp/atest.key',
+    pem_cert_path     => '/tmp/atest.pem',
+    pem_key_owner     => 'pe-puppet',
+    pem_key_group     => 'pe-puppet',
+    pem_key_mode      => '0444',
+    pem_cert_owner    => 'pe-puppet',
+    pem_cert_group    => 'pe-puppet',
+    pem_cert_mode     => '0444',
+  }
+
 }

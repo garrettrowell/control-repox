@@ -37,6 +37,7 @@ mod 'puppetlabs-pwshlib', '0.10.3'
 mod 'puppetlabs-powershell', '6.0.0'
 mod 'puppetlabs-chocolatey', '8.0.0'
 mod 'puppetlabs-dropsonde', '0.2.0'
+mod 'puppet-openssl', '2.0.1'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
