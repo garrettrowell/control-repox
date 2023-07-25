@@ -4,6 +4,13 @@
 #
 # @example
 #   util::pkcs12_to_pem { 'namevar': }
+#
+# @param pkcs12_azure_cert
+#   The certificate to pull from azure key vault
+#
+# @param pkcs12_path
+#   path to write pkcs12 cert to
+#
 define util::pkcs12_to_pem (
   String[1] $pkcs12_azure_cert,
   Stdlib::Absolutepath $pkcs12_path,
