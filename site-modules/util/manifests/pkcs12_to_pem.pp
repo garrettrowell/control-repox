@@ -37,12 +37,22 @@ define util::pkcs12_to_pem (
     subscribe => File["${title} pkcs12_cert"],
   }
 
+  Exec["Export ${pkcs12_path} to ${pem_key_path}"] {
+    create      => undef,
+    refreshonly => true
+  }
+
   openssl::export::pem_cert { "${title} cert":
     ensure   => 'present',
     pfx_cert => $pkcs12_path,
     pem_cert => $pem_cert_path,
     in_pass  => '',
     subscribe => File["${title} pkcs12_cert"],
+  }
+
+  Exec["Export ${pkcs12_path} to ${pem_cert_path}"] {
+    create      => undef,
+    refreshonly => true
   }
 
   file { "${title} pem_cert":
