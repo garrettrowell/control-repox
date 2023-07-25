@@ -22,10 +22,16 @@ define util::pkcs12_to_pem (
   String[1] $pem_cert_owner,
   String[1] $pem_cert_group,
   String[1] $pem_cert_mode,
+  String[1] $pkcs12_owner,
+  String[1] $pkcs12_group,
+  String[1] $pkcs12_mode,
 ) {
   file { "${title} pkcs12_cert":
-    path    => $pkcs12_path,
     ensure  => file,
+    owner   => $pkcs12_owner,
+    group   => $pkcs12_group,
+    mode    => $pkcs12_mode,
+    path    => $pkcs12_path,
     content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 

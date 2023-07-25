@@ -183,6 +183,9 @@ node 'pe-primary.garrett.rowell' {
     pem_cert_owner    => 'pe-puppet',
     pem_cert_group    => 'pe-puppet',
     pem_cert_mode     => '0444',
+    pkcs12_owner      => 'pe-puppet',
+    pkcs12_group      => 'pe-puppet',
+    pkcs12_mode       => '0444',
   }
 
 }
