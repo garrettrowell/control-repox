@@ -29,7 +29,8 @@ define util::pkcs12_to_pem (
     content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 
-  openssl::export::pem_key { "${title} cert_key":
+  #  openssl::export::pem_key { "${title} cert_key":
+  util::openssl::pem_key { "${title} cert_key":
     ensure    => 'present',
     pfx_cert  => $pkcs12_path,
     pem_key   => $pem_key_path,
@@ -37,12 +38,13 @@ define util::pkcs12_to_pem (
     subscribe => File["${title} pkcs12_cert"],
   }
 
-  Exec["Export ${pkcs12_path} to ${pem_key_path}"] {
-    create      => undef,
-    refreshonly => true
-  }
+  #  Exec["Export ${pkcs12_path} to ${pem_key_path}"] {
+  #    create      => undef,
+  #    refreshonly => true
+  #  }
 
-  openssl::export::pem_cert { "${title} cert":
+  #  openssl::export::pem_cert { "${title} cert":
+  util::openssl::pem_cert { "${title} cert":
     ensure   => 'present',
     pfx_cert => $pkcs12_path,
     pem_cert => $pem_cert_path,
@@ -50,10 +52,10 @@ define util::pkcs12_to_pem (
     subscribe => File["${title} pkcs12_cert"],
   }
 
-  Exec["Export ${pkcs12_path} to ${pem_cert_path}"] {
-    create      => undef,
-    refreshonly => true
-  }
+  #  Exec["Export ${pkcs12_path} to ${pem_cert_path}"] {
+  #    create      => undef,
+  #    refreshonly => true
+  #  }
 
   file { "${title} pem_cert":
     ensure  => present,
