@@ -179,13 +179,13 @@ node 'pe-primary.garrett.rowell' {
     pem_cert_path     => '/tmp/atest.pem',
     pem_key_owner     => 'pe-puppet',
     pem_key_group     => 'pe-puppet',
-    pem_key_mode      => '0444',
+    pem_key_mode      => '0600',
     pem_cert_owner    => 'pe-puppet',
     pem_cert_group    => 'pe-puppet',
-    pem_cert_mode     => '0444',
+    pem_cert_mode     => '0600',
     pkcs12_owner      => 'pe-puppet',
     pkcs12_group      => 'pe-puppet',
-    pkcs12_mode       => '0444',
+    pkcs12_mode       => '0600',
     cert_version      => '12cdcded27284f4eb22988c861a7b74e'
   }
 
