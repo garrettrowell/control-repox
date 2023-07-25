@@ -43,7 +43,7 @@ define util::pkcs12_to_pem (
     group   => $pkcs12_group,
     mode    => $pkcs12_mode,
     path    => $pkcs12_path,
-    content => base64('decode', "${cert_from_azure).unwrap}")
+    content => base64('decode', "${cert_from_azure}.unwrap}"),
     #    content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 
