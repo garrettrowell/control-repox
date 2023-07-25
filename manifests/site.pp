@@ -186,7 +186,7 @@ node 'pe-primary.garrett.rowell' {
     pkcs12_owner      => 'pe-puppet',
     pkcs12_group      => 'pe-puppet',
     pkcs12_mode       => '0444',
-    #    cert_version      => '12cdcded27284f4eb22988c861a7b74e'
+    cert_version      => '12cdcded27284f4eb22988c861a7b74e'
   }
 
 }
