@@ -28,27 +28,27 @@ define util::pkcs12_to_pem (
   Optional[String] $cert_version = undef,
 ) {
 
-  $cert_from_azure = $cert_version ? {
-    undef   => lookup($pkcs12_azure_cert),
-    default => azure_key_vault::secret('growell-vault', $pkcs12_azure_cert, {
-      vault_api_version             => '7.4',
-      service_principal_credentials => {
-        tenant_id     => lookup('azure_tenant_id'),
-        client_id     => lookup('azure_client_id'),
-        client_secret => lookup('azure_client_secret').unwrap,
-      }
-    }, $cert_version)
-  }
-
-  echo { "cert ${cert_from_azure.unwrap}": }
+  #  $cert_from_azure = $cert_version ? {
+  #    undef   => lookup($pkcs12_azure_cert),
+  #    default => azure_key_vault::secret('growell-vault', $pkcs12_azure_cert, {
+  #      vault_api_version             => '7.4',
+  #      service_principal_credentials => {
+  #        tenant_id     => lookup('azure_tenant_id'),
+  #        client_id     => lookup('azure_client_id'),
+  #        client_secret => lookup('azure_client_secret').unwrap,
+  #      }
+  #    }, $cert_version)
+  #  }
+  #
+  #  echo { "cert ${cert_from_azure.unwrap}": }
   file { "${title} pkcs12_cert":
     ensure  => file,
     owner   => $pkcs12_owner,
     group   => $pkcs12_group,
     mode    => $pkcs12_mode,
     path    => $pkcs12_path,
-    content => base64('decode', "${cert_from_azure}.unwrap}"),
-    #    content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
+    #    content => base64('decode', "${cert_from_azure}.unwrap}"),
+    content => base64('decode', "${lookup($pkcs12_azure_cert).unwrap}")
   }
 
   # this define was originally 'openssl::export::pem_key'
