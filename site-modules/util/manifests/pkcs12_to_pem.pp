@@ -25,17 +25,20 @@ define util::pkcs12_to_pem (
   String[1] $pkcs12_owner,
   String[1] $pkcs12_group,
   String[1] $pkcs12_mode,
-  Optional[String] $cert_version = ''
+  Optional[String] $cert_version = undef
 ) {
 
-  $cert_from_azure = azure_key_vault::secret('growell-vault', 'test-cert', {
-    vault_api_version             => '7.4',
-    service_principal_credentials => {
-      tenant_id     => lookup('azure_tenant_id'),
-      client_id     => lookup('azure_client_id'),
-      client_secret => lookup('azure_client_secret').unwrap,
-    }
-  }, $cert_version)
+  $cert_from_azure = $cert_version ? {
+    undef   => lookup($pkcs12_azure_cert),
+    default => azure_key_vault::secret('growell-vault', 'test-cert', {
+      vault_api_version             => '7.4',
+      service_principal_credentials => {
+        tenant_id     => lookup('azure_tenant_id'),
+        client_id     => lookup('azure_client_id'),
+        client_secret => lookup('azure_client_secret').unwrap,
+      }
+    }, $cert_version)
+  }
 
   file { "${title} pkcs12_cert":
     ensure  => file,
