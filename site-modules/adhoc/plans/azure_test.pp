@@ -7,7 +7,7 @@ plan adhoc::azure_test(
 ) {
 
   #  $targets = get_targets($target)
-  $cert_from_azure = lookup($secret)
+  $cert_from_azure = lookup($secret).unwrap
   run_command("openssl enc -base64 -d -A <<< '${cert_from_azure}' > ${pkcs12_location}", $targets)
 
 }
