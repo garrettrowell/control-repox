@@ -23,6 +23,7 @@ plan adhoc::azure_function(
   String $pem_key_location,
 ) {
 
+  apply_prep($targets)
   apply($targets) {
     util::pkcs12_to_pem { $secret:
       pkcs12_azure_cert => $secret,
