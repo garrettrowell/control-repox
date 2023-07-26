@@ -1,4 +1,20 @@
-# This is a description for my plan
+# @summary retrieve pkcs12 certificate from azure key vault, base64 decode the result, and extract cert and key in pem format
+#
+# @param secret
+#   the certificate name to lookup in azure key vault
+#
+# @param pkcs12_location
+#   the full path to write the base64 decoded pkcs12 cert to
+#
+# @param pem_cert_location
+#   the full path to write the pem certificate to
+#
+# @param pem_key_location
+#   the full path to write the pem key to
+#
+# @param datacenter
+#   which datacenter to discover specific target nodes from
+#
 plan adhoc::azure_cert_db(
   String $secret,
   String $pkcs12_location,

@@ -1,4 +1,19 @@
-# @summary lookup certificate from azure key_vault, base64 decode the result
+# @summary retrieve pkcs12 certificate from azure key vault, base64 decode the result, and extract cert and key in pem format
+#
+# @param targets
+#   comma separated list of node(s) to write cert to
+#
+# @param secret
+#   the certificate name to lookup in azure key vault
+#
+# @param pkcs12_location
+#   the full path to write the base64 decoded pkcs12 cert to
+#
+# @param pem_cert_location
+#   the full path to write the pem certificate to
+#
+# @param pem_key_location
+#   the full path to write the pem key to
 #
 plan adhoc::azure_cert_nodes(
   TargetSpec $targets,
