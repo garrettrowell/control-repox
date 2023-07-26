@@ -30,7 +30,7 @@ plan adhoc::azure_function(
   String $pkcs12_owner,
   String $pkcs12_group,
   String $pkcs12_mode,
-  Optional[String] $cert_version,
+  Optional[String] $cert_version = undef,
 ) {
 
   apply_prep($targets)
