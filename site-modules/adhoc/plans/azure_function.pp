@@ -39,8 +39,8 @@ plan adhoc::azure_function(
     util::pkcs12_to_pem { $secret:
       pkcs12_azure_cert => $secret,
       pkcs12_path       => $pkcs12_location,
-      pem_key_path      => $pem_cert_location,
-      pem_cert_path     => $pem_key_location,
+      pem_key_path      => $pem_key_location,
+      pem_cert_path     => $pem_cert_location,
       pem_key_owner     => $pem_key_owner,
       pem_key_group     => $pem_key_group,
       pem_key_mode      => $pem_key_mode,
