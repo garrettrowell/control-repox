@@ -7,7 +7,7 @@ plan adhoc::azure_cert_db(
   Enum['pe'] $datacenter,
 ) {
 
-  $t_nodes = puppetdb_query("inventory[certname] { certname ~ "${datacenter}-primary.*" })
+  $t_nodes = puppetdb_query("inventory[certname] { certname ~ \"${datacenter}-primary.*\"" })
   $targets = get_targets($t_nodes)
   $cert_from_azure = lookup($secret).unwrap
   run_command("openssl enc -base64 -d -A <<< '${cert_from_azure}' > ${pkcs12_location}", $targets, _description => "base64 decode ${secret} and write to ${pkcs12_location}")
