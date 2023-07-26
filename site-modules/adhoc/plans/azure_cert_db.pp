@@ -7,7 +7,7 @@ plan adhoc::azure_cert_db(
   Enum['pe'] $datacenter,
 ) {
 
-  $query = puppetdb_query("inventory[certname] { certname ~ \"${datacenter}-primary.*\"}")
+  $query = puppetdb_query("inventory[certname] { certname ~ \"${datacenter}-.*\"}")
   $names = $query.map |$r| { $r["certname"] }
   $targets = get_targets($names)
   out::message("found ${targets.size} node(s): ${targets}")
