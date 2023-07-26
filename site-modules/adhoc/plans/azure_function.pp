@@ -21,24 +21,36 @@ plan adhoc::azure_function(
   String $pkcs12_location,
   String $pem_cert_location,
   String $pem_key_location,
+  String $pem_key_owner,
+  String $pem_key_group,
+  String $pem_key_mode,
+  String $pem_cert_owner,
+  String $pem_cert_group,
+  String $pem_cert_mode,
+  String $pkcs12_owner,
+  String $pkcs12_group,
+  String $pkcs12_mode,
+  Optional[String] $cert_version,
 ) {
 
   apply_prep($targets)
+
   apply($targets) {
     util::pkcs12_to_pem { $secret:
       pkcs12_azure_cert => $secret,
       pkcs12_path       => $pkcs12_location,
       pem_key_path      => $pem_cert_location,
       pem_cert_path     => $pem_key_location,
-      pem_key_owner     => 'pe-puppet',
-      pem_key_group     => 'pe-puppet',
-      pem_key_mode      => '0600',
-      pem_cert_owner    => 'pe-puppet',
-      pem_cert_group    => 'pe-puppet',
-      pem_cert_mode     => '0600',
-      pkcs12_owner      => 'pe-puppet',
-      pkcs12_group      => 'pe-puppet',
-      pkcs12_mode       => '0600',
+      pem_key_owner     => $pem_key_owner,
+      pem_key_group     => $pem_key_group,
+      pem_key_mode      => $pem_key_mode,
+      pem_cert_owner    => $pem_cert_owner,
+      pem_cert_group    => $pem_cert_group,
+      pem_cert_mode     => $pem_cert_mode,
+      pkcs12_owner      => $pkcs12_owner,
+      pkcs12_group      => $pkcs12_group,
+      pkcs12_mode       => $pkcs12_mode,
+      cert_version      => $cert_version
     }
   }
 
