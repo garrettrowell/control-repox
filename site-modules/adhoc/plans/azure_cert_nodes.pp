@@ -1,5 +1,5 @@
 # This is a description for my plan
-plan adhoc::azure_test(
+plan adhoc::azure_cert_nodes(
   # input parameters go here
   TargetSpec $targets,
   String $secret,
