@@ -9,6 +9,7 @@ class epp_demo (
   String $log_level,
   String $log_dir,
   String $log_target,
+  Hash   $networks,
 ){
   file { '/tmp/test':
     ensure  => 'file',

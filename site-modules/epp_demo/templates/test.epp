@@ -5,3 +5,9 @@ LogTarget = <%= $epp_demo::log_target %>
 
 
 Feeders = []
+
+<% $epp_demo::networks.each |$network, $config| { -%>
+  {
+    Type = "<%= $network %>"
+  },
+<% } -%>
