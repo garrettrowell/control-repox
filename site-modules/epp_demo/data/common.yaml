@@ -1,0 +1,6 @@
+---
+
+epp_demo::schedule_zone_id: 'Test2'
+epp_demo::log_level: 'default'
+epp_demo::log_dir: '/tmp/test'
+epp_demo::log_target: '/tmp/overthere'

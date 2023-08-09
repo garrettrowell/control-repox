@@ -106,6 +106,7 @@ node default {
 }
 
 node 'pe-primary.garrett.rowell' {
+  include epp_demo
   include dropsonde
 
   # Override PE managed rule to allow the primary server to request

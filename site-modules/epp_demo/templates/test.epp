@@ -1,0 +1,7 @@
+CASUID = "<%= $epp_demo::schedule_zone_id %>"
+LogLevel = "<%= $epp_demo::log_level %>"
+LogDir = "<%= $epp_demo::log_dir %>"
+LogTarget = <%= $epp_demo::log_target %>
+
+
+Feeders = []
