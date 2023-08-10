@@ -1,6 +1,8 @@
 ---
 atest: some_string
 puppet_operational_dashboards::profile::dashboards::grafana_password: puppetlabs
+puppet_operational_dashboards::profile::dashboards::grafana_version: installed
+puppet_operational_dashboards::profile::dashboards::manage_grafana_repo: false
 
 # Azure Key Vault Configuration
 azure_tenant_id: '6917e1c4-8f49-4999-9a74-fcc94e60bc34'
