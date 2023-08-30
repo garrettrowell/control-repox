@@ -18,9 +18,9 @@ mod 'opsgenie_report_processor',
   git: 'git@github.com:garrettrowell/opsgenie_report_processor.git',
   branch: 'main'
 
-mod 'adviser',
-  git: 'git@github.com:puppetlabs/prosvc-adviser.git',
-  branch: 'main'
+#mod 'adviser',
+#  git: 'git@github.com:puppetlabs/prosvc-adviser.git',
+#  branch: 'main'
 
 mod 'puppetlabs-puppet_authorization', '0.5.1'
 #mod 'puppet-catalog_diff',
