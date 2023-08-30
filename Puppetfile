@@ -19,7 +19,7 @@ mod 'opsgenie_report_processor',
   branch: 'main'
 
 mod 'adviser',
-  git: 'git@github.com:puppetlabs/prosvc-adviser.git'
+  git: 'git@github.com:puppetlabs/prosvc-adviser.git',
   branch: 'main'
 
 mod 'puppetlabs-puppet_authorization', '0.5.1'
