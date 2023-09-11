@@ -105,13 +105,13 @@ node default {
 
 }
 #node 'pe-nixagent-0.garrett.rowell' {
-#  include puppet_operational_dashboards
+  include puppet_operational_dashboards
 #}
 
 node 'pe-primary.garrett.rowell' {
   include epp_demo
   include dropsonde
-  #  include puppet_operational_dashboards::enterprise_infrastructure
+  include puppet_operational_dashboards::enterprise_infrastructure
 
   # Override PE managed rule to allow the primary server to request
   #   catalogs for any node. This should be removed once migration
