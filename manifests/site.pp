@@ -104,9 +104,9 @@ node default {
   #}
 
 }
-#node 'pe-nixagent-0.garrett.rowell' {
+node 'pe-nixagent-0.garrett.rowell' {
   include puppet_operational_dashboards
-#}
+}
 
 node 'pe-primary.garrett.rowell' {
   include epp_demo
