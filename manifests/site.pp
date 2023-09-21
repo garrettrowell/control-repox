@@ -104,94 +104,94 @@ node default {
   #}
 
 }
-node 'pe-nixagent-0.garrett.rowell' {
-  include puppet_operational_dashboards
-}
-
-node 'pe-primary.garrett.rowell' {
-  include epp_demo
-  include dropsonde
-  include puppet_operational_dashboards::enterprise_infrastructure
-
-  # Override PE managed rule to allow the primary server to request
-  #   catalogs for any node. This should be removed once migration
-  #   is complete
-  Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
-    allow => [$trusted['certname'], '$1'],
-  }
-
-  #  # Authentication data required to configure azure_key_vault hiera backend
-  #  $azure_creds = {
-  #    'tenant_id'     => lookup('azure_tenant_id'),
-  #    'client_id'     => lookup('azure_client_id'),
-  #    'client_secret' => lookup('azure_client_secret').unwrap,
-  #  }
-  #
-  #  # Manage eyaml keys and azure_key_vault_credentials to allow use
-  #  #   with plans
-  #  $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
-  #  $eyaml_public_key  = "${settings::confdir}/eyaml/public_key.pkcs7.pem"
-  #
-  #  file {
-  #    default:
-  #      ensure => file,
-  #      owner  => 'pe-puppet',
-  #      group  => 'pe-orchestration-services',
-  #      mode   => '0440',
-  #    ;
-  #    "${settings::confdir}/azure_key_vault_credentials.yaml":
-  #      content => Sensitive(to_yaml($azure_creds)),
-  #    ;
-  #    [
-  #      $eyaml_private_key,
-  #      $eyaml_public_key,
-  #    ]:
-  #      # use defaults
-  #    ;
-  #    "${settings::confdir}/eyaml":
-  #      ensure => directory,
-  #      mode   => '0550',
-  #    ;
-  #  }
-  #
-  #  # Configure hiera-eyaml cli for convenience
-  #  file {
-  #    '/etc/eyaml':
-  #      ensure => directory,
-  #    ;
-  #    '/etc/eyaml/config.yaml':
-  #      ensure  => file,
-  #      content => to_yaml(
-  #        {
-  #          'pkcs7_private_key' => $eyaml_private_key,
-  #          'pkcs7_public_key'  => $eyaml_public_key,
-  #        }
-  #      ),
-  #    ;
-  #  }
-
-  #$test_pem = lookup('test2_cert')
-  #file { '/tmp/test.pem':
-  #  ensure  => file,
-  #  content => $test_pem.unwrap,
-  #  #    content => base64('decode', $test_pem.unwrap),
-  #}
-
-  #  util::pkcs12_to_pem { 'atest':
-  #    pkcs12_azure_cert => 'test-cert',
-  #    pkcs12_path       => '/tmp/atest.pkcs12',
-  #    pem_key_path      => '/tmp/atest.key',
-  #    pem_cert_path     => '/tmp/atest.pem',
-  #    pem_key_owner     => 'pe-puppet',
-  #    pem_key_group     => 'pe-puppet',
-  #    pem_key_mode      => '0600',
-  #    pem_cert_owner    => 'pe-puppet',
-  #    pem_cert_group    => 'pe-puppet',
-  #    pem_cert_mode     => '0600',
-  #    pkcs12_owner      => 'pe-puppet',
-  #    pkcs12_group      => 'pe-puppet',
-  #    pkcs12_mode       => '0600',
-  #    #    cert_version      => '12cdcded27284f4eb22988c861a7b74e'
-  #  }
-
-}
+#node 'pe-nixagent-0.garrett.rowell' {
+#  include puppet_operational_dashboards
+#}
+#
+#node 'pe-primary.garrett.rowell' {
+#  include epp_demo
+#  include dropsonde
+#  include puppet_operational_dashboards::enterprise_infrastructure
+#
+#  # Override PE managed rule to allow the primary server to request
+#  #   catalogs for any node. This should be removed once migration
+#  #   is complete
+#  Pe_puppet_authorization::Rule <| title == 'puppetlabs catalog' |> {
+#    allow => [$trusted['certname'], '$1'],
+#  }
+#
+#  #  # Authentication data required to configure azure_key_vault hiera backend
+#  #  $azure_creds = {
+#  #    'tenant_id'     => lookup('azure_tenant_id'),
+#  #    'client_id'     => lookup('azure_client_id'),
+#  #    'client_secret' => lookup('azure_client_secret').unwrap,
+#  #  }
+#  #
+#  #  # Manage eyaml keys and azure_key_vault_credentials to allow use
+#  #  #   with plans
+#  #  $eyaml_private_key = "${settings::confdir}/eyaml/private_key.pkcs7.pem"
+#  #  $eyaml_public_key  = "${settings::confdir}/eyaml/public_key.pkcs7.pem"
+#  #
+#  #  file {
+#  #    default:
+#  #      ensure => file,
+#  #      owner  => 'pe-puppet',
+#  #      group  => 'pe-orchestration-services',
+#  #      mode   => '0440',
+#  #    ;
+#  #    "${settings::confdir}/azure_key_vault_credentials.yaml":
+#  #      content => Sensitive(to_yaml($azure_creds)),
+#  #    ;
+#  #    [
+#  #      $eyaml_private_key,
+#  #      $eyaml_public_key,
+#  #    ]:
+#  #      # use defaults
+#  #    ;
+#  #    "${settings::confdir}/eyaml":
+#  #      ensure => directory,
+#  #      mode   => '0550',
+#  #    ;
+#  #  }
+#  #
+#  #  # Configure hiera-eyaml cli for convenience
+#  #  file {
+#  #    '/etc/eyaml':
+#  #      ensure => directory,
+#  #    ;
+#  #    '/etc/eyaml/config.yaml':
+#  #      ensure  => file,
+#  #      content => to_yaml(
+#  #        {
+#  #          'pkcs7_private_key' => $eyaml_private_key,
+#  #          'pkcs7_public_key'  => $eyaml_public_key,
+#  #        }
+#  #      ),
+#  #    ;
+#  #  }
+#
+#  #$test_pem = lookup('test2_cert')
+#  #file { '/tmp/test.pem':
+#  #  ensure  => file,
+#  #  content => $test_pem.unwrap,
+#  #  #    content => base64('decode', $test_pem.unwrap),
+#  #}
+#
+#  #  util::pkcs12_to_pem { 'atest':
+#  #    pkcs12_azure_cert => 'test-cert',
+#  #    pkcs12_path       => '/tmp/atest.pkcs12',
+#  #    pem_key_path      => '/tmp/atest.key',
+#  #    pem_cert_path     => '/tmp/atest.pem',
+#  #    pem_key_owner     => 'pe-puppet',
+#  #    pem_key_group     => 'pe-puppet',
+#  #    pem_key_mode      => '0600',
+#  #    pem_cert_owner    => 'pe-puppet',
+#  #    pem_cert_group    => 'pe-puppet',
+#  #    pem_cert_mode     => '0600',
+#  #    pkcs12_owner      => 'pe-puppet',
+#  #    pkcs12_group      => 'pe-puppet',
+#  #    pkcs12_mode       => '0600',
+#  #    #    cert_version      => '12cdcded27284f4eb22988c861a7b74e'
+#  #  }
+#
+#}
