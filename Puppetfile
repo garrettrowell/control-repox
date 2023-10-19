@@ -53,3 +53,5 @@ mod 'puppet-openssl', '2.0.1'
 #mod 'apache',
 #  git:    'https://github.com/puppetlabs/puppetlabs-apache',
 #  branch: 'docs_experiment'
+
+mod 'puppetlabs-cd4pe_jobs', '1.6.0'
