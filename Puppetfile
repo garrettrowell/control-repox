@@ -55,3 +55,8 @@ mod 'puppet-openssl', '2.0.1'
 #  branch: 'docs_experiment'
 
 mod 'puppetlabs-cd4pe_jobs', '1.6.0'
+mod 'puppetlabs-cd4pe', '3.2.5'
+mod 'puppetlabs-concat', '9.0.0'
+mod 'puppetlabs-hocon', '1.1.0'
+mod 'puppetlabs-docker', '9.1.0'
+mod 'puppetlabs-reboot', '5.0.0'
