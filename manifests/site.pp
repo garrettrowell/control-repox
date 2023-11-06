@@ -25,7 +25,6 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  notify { 'imatest': }
   # Check for a external 'fail_catalog' fact to manually trigger catalog failure
   if $facts['fail_catalog'] == 'true' {
     fail('i was told to fail...')
