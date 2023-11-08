@@ -1,0 +1,11 @@
+{
+  "description": "Kick off a deployment via cdpe",
+  "input_method": "stdin",
+  "files": ["python_task_helper/files/task_helper.py"],
+  "parameters": {
+    "name": {
+      "description": "Name to use in greeting",
+      "type": "String"
+    }
+  }
+}
