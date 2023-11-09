@@ -3,9 +3,38 @@
   "input_method": "stdin",
   "files": ["python_task_helper/files/task_helper.py"],
   "parameters": {
-    "name": {
-      "description": "Name to use in greeting",
-      "type": "String"
+    "project_domain": {
+      "description": "Workspace ID where the pipeline resides",
+      "type": "String[1]"
+    },
+    "project_name": {
+      "description": "Name of the pipeline",
+      "type": "String[1]"
+    },
+    "sha": {
+      "description": "SHA of the git commit to deploy",
+      "type": "String[1]"
+    },
+    "stage_number": {
+      "description": "Stage of the pipeline to initiate from",
+      "type": "Variant[Integer, String[1]]"
+    },
+    "commit_message": {
+      "description": "Message to display in cd4pe for the deployment",
+      "type": "String[1]"
+    },
+    "cd4pe_api_token": {
+      "description": "Token allowed to deploy the given pipeline",
+      "type": "String[1]",
+      "sensitive": true
+    },
+    "cd4pe_endpoint": {
+      "description": "uri to cd4pe to make api calls against",
+      "type": "String[1]"
+    },
+    "pipeline_id": {
+      "description": "ID of the pipeline to deploy",
+      "type": "String[1]"
     }
   }
 }
