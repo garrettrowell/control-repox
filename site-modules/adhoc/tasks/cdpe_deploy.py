@@ -15,7 +15,7 @@ class MyTask(TaskHelper):
     }
     # POST data to trigger a pipeline at a given stage
     deploy_data = {
-      'projectID': {
+      'projectId': {
         'domain': args['project_domain'],
         'name': args['project_name']
       },
