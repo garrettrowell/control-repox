@@ -28,13 +28,13 @@ class MyTask(TaskHelper):
     # Make the POST call
     deployment_request = requests.post(deploy_url, headers=deploy_headers, json=deploy_data, verify=False)
     if deployment_request.status_code == 204:
-      return { 'result': 'Deployment for {project} at {stage} successful'.format(project=args['project_name'], stage=args['stage_number'])
+      return { 'result': 'Deployment for {project} at {stage} successful'.format(project=args['project_name'], stage=args['stage_number']) }
     else:
       try:
         err_msg = deployment_request.json()
         return { 'result': err_msg }
       except:
-        return { 'result': 'deployment request returned '+str(deployment_request.status_code)
+        return { 'result': 'deployment request returned '+str(deployment_request.status_code) }
 
 if __name__ == '__main__':
     MyTask().run()
