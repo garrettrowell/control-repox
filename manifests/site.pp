@@ -25,19 +25,21 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  ini_setting {
-    default:
-      path    => '/etc/puppetlabs/puppet/puppet.conf',
-      section => 'agent',
-      setting => $title,
-      ;
-    'fact_value_length_soft_limit':
-      value   => 1234,
-      ;
-    'number_of_facts_soft_limit':
-      value   => 4567,
-      ;
-  }
+  #  ini_setting {
+  #    default:
+  #      path    => '/etc/puppetlabs/puppet/puppet.conf',
+  #      section => 'agent',
+  #      setting => $title,
+  #      ;
+  #    'fact_value_length_soft_limit':
+  #      value   => 1234,
+  #      setting => $title,
+  #
+  #      ;
+  #    'number_of_facts_soft_limit':
+  #      value   => 4567,
+  #      ;
+  #  }
 
   # Check for a external 'fail_catalog' fact to manually trigger catalog failure
   if $facts['fail_catalog'] == 'true' {
