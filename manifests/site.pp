@@ -29,14 +29,13 @@ node default {
     default:
       path    => '/etc/puppetlabs/puppet/puppet.conf',
       section => 'agent',
+      setting => $title,
       ;
     'fact_value_length_soft_limit':
       value   => 1234,
-      setting => $title,
       ;
     'number_of_facts_soft_limit':
       value   => 4567,
-      setting => $title,
       ;
   }
 
