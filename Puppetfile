@@ -61,6 +61,7 @@ mod 'puppetlabs-concat', '9.0.0'
 mod 'puppetlabs-hocon', '1.1.0'
 mod 'puppetlabs-docker', '9.1.0'
 mod 'puppetlabs-reboot', '5.0.0'
+mod 'puppetlabs-exec', '3.0.0'
 
 mod 'mymodule',
   git: 'git@github.com:garrettrowell/mymodule.git',
