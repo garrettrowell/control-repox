@@ -27,6 +27,9 @@ File { backup => false }
 node default {
     echo { 'im new': }
     echo { 'im newer': }
+    Resources <| tag == 'critical' |> {
+      noop => false
+    }
     file { '/tmp/atest':
       ensure  => file,
       tag     => 'critical',
