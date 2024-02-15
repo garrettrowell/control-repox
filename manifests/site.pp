@@ -14,6 +14,9 @@
 File { backup => false }
 
 ## Node Definitions ##
+    Resources <| tag == 'critical' |> {
+      noop => false
+    }
 
 # The default node definition matches any node lacking a more specific node
 # definition. If there are no other node definitions in this file, classes
@@ -27,9 +30,9 @@ File { backup => false }
 node default {
     echo { 'im new': }
     echo { 'im newer': }
-    Resources <| tag == 'critical' |> {
-      noop => false
-    }
+    #    Resources <| tag == 'critical' |> {
+    #      noop => false
+    #    }
     file { '/tmp/atest':
       ensure  => file,
       tag     => 'critical',
