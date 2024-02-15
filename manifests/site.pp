@@ -27,6 +27,16 @@ File { backup => false }
 node default {
     echo { 'im new': }
     echo { 'im newer': }
+    file { '/tmp/atest':
+      ensure  => file,
+      tag     => 'critical',
+      content => 'hello world'
+    }
+    file { '/tmp/atest2':
+      ensure  => file,
+      tag     => 'non_critical',
+      content => 'hello world'
+    }
 
   #  ini_setting {
   #    default:
